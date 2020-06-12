@@ -1,0 +1,17 @@
+{
+  "name": "epic-lbryian-bot",
+  "version": "0.0.1",
+  "description": "EPIC BOT",
+  "main": "src/index.js",
+  "repository": "https://github.com/lbryians/epic-lbryian-bot.git",
+  "author": "none",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
