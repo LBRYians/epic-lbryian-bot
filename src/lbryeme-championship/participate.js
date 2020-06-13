@@ -24,20 +24,22 @@ function setParticipation(client) {
 
       if (msg.member.roles.cache.get(phase1Role)) msg.channel.send(`<@${msg.author.id}> You are already participating :)`);
       else {
-        msg.member.roles.add(role);
-        msg.channel.send(`<@${msg.author.id}> You've been added!`)
-
-        updatePhase1List(client);
+        msg.member.roles.add(role).then(() => {
+          msg.channel.send(`<@${msg.author.id}> You've been added!`)
+          updatePhase1List(client);
+        })
+        .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
       }
     }
     else if (msg.content.trim().toLowerCase() == '!quit') {
       const role = msg.guild.roles.cache.get(phase1Role);
 
       if (msg.member.roles.cache.get(phase1Role)) {
-        msg.member.roles.remove(role);
-        msg.channel.send(`<@${msg.author.id}> You've been removed from the list :(`)
-
-        updatePhase1List(client);
+        msg.member.roles.remove(role).then(() => {
+          msg.channel.send(`<@${msg.author.id}> You've been removed from the list :(`)
+          updatePhase1List(client);
+        })
+        .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
       }
       else {
         msg.channel.send(`<@${msg.author.id}> You are not a participant. ¯\\_(ツ)_/¯`);
