@@ -9,7 +9,9 @@
   "private": false,
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "voteOnce": "node src/lbryeme-championship/voteOnce.js",
+    "updateList": "node src/lbryeme-championship/updateList.js"
   },
   "dependencies": {
     "discord.js": "^12.2.0",

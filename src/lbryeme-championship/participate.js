@@ -3,17 +3,16 @@ require('dotenv').config();
 
 const { rulesChannel, championshipGuild, phase1ParticipantList, phase1Role } = require('./config.json');
 
-function updatePhase1List(client) {
+function updatePhase1List(client, cb = () => {}) {
   client.guilds.cache.get(championshipGuild).channels.cache.get(rulesChannel).messages.fetch().then(msgs => {
     const participants = client.guilds.cache.get(championshipGuild).roles.cache.get(phase1Role).members.array()
     let list = `
-**CHAMPIONSHIP PHASE 1 PARTICIPANTS**
--------------------------------------`;
+**CHAMPIONSHIP PHASE 1 PARTICIPANTS**`;
 
     participants.forEach(participant => list += `\n- <@${participant.id}>`);
 
     const phase1ListMsg = msgs.get(phase1ParticipantList);
-    phase1ListMsg.edit(list)
+    phase1ListMsg.edit(list).then(cb);
   })
 }
 
@@ -48,4 +47,7 @@ function setParticipation(client) {
   })
 }
 
-module.exports = setParticipation;
+module.exports = {
+  setParticipation,
+  updatePhase1List 
+}
