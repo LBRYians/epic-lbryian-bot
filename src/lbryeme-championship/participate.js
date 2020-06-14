@@ -7,7 +7,7 @@ function updatePhase1List(client, cb = () => {}) {
   client.guilds.cache.get(championshipGuild).channels.cache.get(rulesChannel).messages.fetch().then(msgs => {
     const participants = client.guilds.cache.get(championshipGuild).roles.cache.get(phase1Role).members.array()
     let list = `
-**CHAMPIONSHIP PHASE 1 PARTICIPANTS**`;
+**CHAMPIONSHIP PHASE 1 PARTICIPANTS (${participants.length})**`;
 
     participants.forEach(participant => list += `\n- <@${participant.id}>`);
 
