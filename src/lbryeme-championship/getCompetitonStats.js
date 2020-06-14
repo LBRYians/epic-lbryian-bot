@@ -16,7 +16,7 @@ const generateStats = (colosseum, posts, cb) => {
       ups: ups,
       downs: downs,
       total: total,
-      caption: post.content.split('\n')[0].split(':')[1],
+      caption: post.content.split('\n')[0],
       link: post.content.split('\n')[1]
     })
   })
@@ -47,7 +47,7 @@ const generateStats = (colosseum, posts, cb) => {
 }
 
 function getStats(client, cb) {
-  memes = []
+  memes = [];
 
   client.guilds.cache.get(championshipGuild).channels.cache.get(colosseumChannel).fetch().then(colosseum => {
     colosseum.messages.fetch({ limit: 100 }).then(posts => generateStats(colosseum, posts, cb))
