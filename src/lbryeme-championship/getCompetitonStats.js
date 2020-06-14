@@ -1,12 +1,5 @@
-const { championshipGuild, colosseumChannel, upvoteEmoji, downvoteEmoji } = require('./config.json');
-let hottestMemes = [
-  {
-    ups: 0,
-    downs: 0,
-    total: 0,
-    meme: ''
-  }
-]
+const { championshipGuild, colosseumChannel, upvoteEmoji, downvoteEmoji, phase1Finalists } = require('./config.json');
+let memes = [];
 
 const generateStats = (colosseum, posts, cb) => {
   posts.each(post => {
@@ -19,35 +12,42 @@ const generateStats = (colosseum, posts, cb) => {
 
     total = ups - downs;
 
-    if (hottestMemes[0].total < total || hottestMemes[0].meme == '') hottestMemes = [{
-      ups,
-      downs,
-      total,
-      meme: post.content
-    }]
-    else if (hottestMemes[0].total == total) hottestMemes.push({
-      ups,
-      downs,
-      total,
-      meme: post.content
+    memes.push({
+      ups: ups,
+      downs: downs,
+      total: total,
+      caption: post.content.split('\n')[0].split(':')[1],
+      link: post.content.split('\n')[1]
     })
   })
 
   if (posts.size == 100) colosseum.messages.fetch({ limit: 100, before: posts.array().slice(-1)[0].id }).then(posts => generateStats(colosseum, posts, cb))
   else {
-    if (cb) cb(hottestMemes);
+    memes = memes.sort((a, b) => {
+      if (a.total == b.total) return b.ups - a.ups;
+      else return b.total - a.total;
+    })
+
+    let rank = 1;
+    let finalMemes = [];
+
+    memes.forEach((meme, i) => {
+      finalMemes.push({
+        ...meme,
+        rank: rank
+      })
+
+      if ((i+1 < memes.length) && (meme.total == memes[i+1].total && meme.ups == memes[i+1].ups)) return;
+      else return rank++;
+    })
+
+    finalMemes = finalMemes.filter(meme => meme.rank <= phase1Finalists);
+    if (cb) cb(finalMemes);
   }
 }
 
 function getStats(client, cb) {
-  hottestMemes = [
-    {
-      ups: 0,
-      downs: 0,
-      total: 0,
-      meme: ''
-    }
-  ]
+  memes = []
 
   client.guilds.cache.get(championshipGuild).channels.cache.get(colosseumChannel).fetch().then(colosseum => {
     colosseum.messages.fetch({ limit: 100 }).then(posts => generateStats(colosseum, posts, cb))
