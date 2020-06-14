@@ -1,5 +1,5 @@
-const discord = require('discord.js');
 require('dotenv').config();
+const { prefix } = require('../config.json');
 
 const { rulesChannel, championshipGuild, phase1ParticipantList, phase1Role } = require('./config.json');
 
@@ -18,7 +18,7 @@ function updatePhase1List(client, cb = () => {}) {
 
 function setParticipation(client) {
   client.on('message', msg => {
-    if (msg.content.trim().toLowerCase() == '!participate') {
+    if (msg.content.trim().toLowerCase() == `${prefix}participate`) {
       const role = msg.guild.roles.cache.get(phase1Role);
 
       if (msg.member.roles.cache.get(phase1Role)) msg.channel.send(`<@${msg.author.id}> You are already participating :)`);
@@ -30,7 +30,7 @@ function setParticipation(client) {
         .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
       }
     }
-    else if (msg.content.trim().toLowerCase() == '!quit') {
+    else if (msg.content.trim().toLowerCase() == `${prefix}quit`) {
       const role = msg.guild.roles.cache.get(phase1Role);
 
       if (msg.member.roles.cache.get(phase1Role)) {
