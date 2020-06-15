@@ -30,7 +30,7 @@ function setVotes(client, championshipMeta) {
       msg.react(upvoteEmoji);
       msg.react(downvoteEmoji);
     }
-    else if (msg.content.trim().toLowerCase() == `${prefix}voterlist ${championshipName}`)
+    else if (msg.content.trim().toLowerCase() == `${prefix}voterlist ${championshipName}`);
   })
 }
 
