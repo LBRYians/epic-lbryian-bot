@@ -1,4 +1,5 @@
 const { prefix } = require('../config.json');
+const updateList = require('./updateList');
 
 function setParticipation(client, championshipMeta) {
   const { participantRole, championshipName } = championshipMeta;
@@ -9,7 +10,9 @@ function setParticipation(client, championshipMeta) {
       if (msg.member.roles.cache.get(participantRole)) msg.channel.send(`<@${msg.author.id}> You are already participating :)`);
       else {
         msg.member.roles.add(role).then(() => {
-          msg.channel.send(`<@${msg.author.id}> You've been added!`);
+          updateList(client, championshipMeta, () => {
+            msg.channel.send(`<@${msg.author.id}> You've been added!`);
+          })
         })
         .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
       }
@@ -19,7 +22,9 @@ function setParticipation(client, championshipMeta) {
 
       if (msg.member.roles.cache.get(participantRole)) {
         msg.member.roles.remove(role).then(() => {
-          msg.channel.send(`<@${msg.author.id}> You've been removed from the list :(`)
+          updateList(client, championshipMeta, () => {
+            msg.channel.send(`<@${msg.author.id}> You've been removed from the list :(`)
+          })
         })
         .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
       }
