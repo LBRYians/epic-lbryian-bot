@@ -1,9 +1,9 @@
 const { prefix } = require('../config.json');
 
 function setParticipation(client, championshipMeta) {
-  const { participantRole, competitionName } = championshipMeta;
+  const { participantRole, championshipName } = championshipMeta;
   client.on('message', msg => {
-    if (msg.content.trim().toLowerCase() == `${prefix}participate ${competitionName}`) {
+    if (msg.content.trim().toLowerCase() == `${prefix}participate ${championshipName}`) {
       const role = msg.guild.roles.cache.get(participantRole);
 
       if (msg.member.roles.cache.get(participantRole)) msg.channel.send(`<@${msg.author.id}> You are already participating :)`);
@@ -14,7 +14,7 @@ function setParticipation(client, championshipMeta) {
         .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
       }
     }
-    else if (msg.content.trim().toLowerCase() == `${prefix}quit ${competitionName}`) {
+    else if (msg.content.trim().toLowerCase() == `${prefix}quit ${championshipName}`) {
       const role = msg.guild.roles.cache.get(participantRole);
 
       if (msg.member.roles.cache.get(participantRole)) {
