@@ -1,6 +1,6 @@
 const { prefix } = require('../config.json');
 const { MessageEmbed } = require('discord.js');
-const getStats = require('./getCompetitonStats');
+const getStats = require('./getChampionshipStats');
 
 function setVotes(client, championshipMeta) {
   const { colosseumChannel, upvoteEmoji, downvoteEmoji, championshipName } = championshipMeta;
@@ -30,6 +30,7 @@ function setVotes(client, championshipMeta) {
       msg.react(upvoteEmoji);
       msg.react(downvoteEmoji);
     }
+    else if (msg.content.trim().toLowerCase() == `${prefix}voterlist ${championshipName}`)
   })
 }
 

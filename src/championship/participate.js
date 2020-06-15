@@ -1,6 +1,7 @@
 const { prefix } = require('../config.json');
 
-function setParticipation(client, participantRole, competitionName) {
+function setParticipation(client, championshipMeta) {
+  const { participantRole, competitionName } = championshipMeta;
   client.on('message', msg => {
     if (msg.content.trim().toLowerCase() == `${prefix}participate ${competitionName}`) {
       const role = msg.guild.roles.cache.get(participantRole);

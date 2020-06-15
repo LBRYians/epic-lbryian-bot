@@ -1,4 +1,5 @@
-function getVoterList(client, championshipGuild, colosseumChannel, voterRole, cb) {
+function getVoterList(client, championshipMeta, cb) {
+  const { championshipGuild, colosseumChannel, voterRole } = championshipMeta;
   let voterIds = [];
 
   const getUsers = (reaction, users, cb) => {
