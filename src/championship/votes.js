@@ -1,19 +1,20 @@
 const { prefix } = require('../config.json');
-const { colosseumChannel } = require('./config.json');
+const { MessageEmbed } = require('discord.js');
 const getStats = require('./getCompetitonStats');
-const { MessageEmbed } = require('discord.js')
 
-function setVotes(client) {
+function setVotes(client, championshipMeta) {
+  const { colosseumChannel, upvoteEmoji, downvoteEmoji, championshipName } = championshipMeta;
+
   client.on('message', msg => {
-    if (msg.content.trim().toLowerCase() == `${prefix}champ`) {
+    if (msg.content.trim().toLowerCase() == `${prefix}champ ${championshipName}`) {
       // Championship Current Stats
       msg.channel.send('Generating competition stats. This can (and will) take time.');
-      getStats(client, finalMemes => {
+      getStats(client, championshipMeta, finalMemes => {
         finalMemes.forEach(meme => {
           msg.channel.send(
             new MessageEmbed()
               .setTimestamp()
-              .setTitle(`Hottest LBRYEME #${meme.rank}`)
+              .setTitle(` #${meme.rank} Meme in ${championshipName}`)
               .addField('**Caption**', meme.caption)
               .addField('Total :star2:', `\`${meme.total}\``, true)
               .addField('Upvotes :+1:', `\`${meme.ups}\``, true)
@@ -26,8 +27,8 @@ function setVotes(client) {
     }
     else if (msg.channel.id === colosseumChannel) {
       // Set votes on a new post
-      msg.react('😍');
-      msg.react('🤮');
+      msg.react(upvoteEmoji);
+      msg.react(downvoteEmoji);
     }
   })
 }
