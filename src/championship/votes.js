@@ -15,7 +15,8 @@ function setVotes(client, championshipMeta) {
           msg.channel.send(`\
 #${meme.rank} Meme in **${championshipName.toUpperCase()}**    
 **Caption**: ${meme.caption}
-**Link**: ${meme.link}`)
+**Link**: ${meme.link}
+\`${meme.ups}\` ups | \`${meme.downs}\` downs | \`${meme.total}\` total`)
         })
       })
     }
