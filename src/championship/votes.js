@@ -17,6 +17,7 @@ function setVotes(client, championshipMeta) {
               .setTimestamp()
               .setTitle(` #${meme.rank} Meme in **${championshipName.toUpperCase()}**`)
               .addField('**Caption**', meme.caption)
+              .addField('**Link**', meme.link)
               .addField('Total :star2:', `\`${meme.total}\``, true)
               .addField('Upvotes :+1:', `\`${meme.ups}\``, true)
               .addField('Downvotes :-1:', `\`${meme.downs}\``, true)
