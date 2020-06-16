@@ -1,5 +1,4 @@
 const { prefix } = require('../config.json');
-const { MessageEmbed } = require('discord.js');
 const getStats = require('./getChampionshipStats');
 const getVoterList = require('./getVoterList');
 
@@ -13,10 +12,10 @@ function setVotes(client, championshipMeta) {
       getStats(client, championshipMeta, finalMemes => {
         finalMemes.forEach(meme => {
           msg.channel.send(`\
-#${meme.rank} Meme in **${championshipName.toUpperCase()}**    
+**#${meme.rank}** Meme in **${championshipName.toUpperCase()}**    
 **Caption**: ${meme.caption}
 **Link**: ${meme.link}
-\`${meme.ups}\` ups | \`${meme.downs}\` downs | \`${meme.total}\` total`)
+\`${meme.ups}\` ${upvoteEmoji} | \`${meme.downs}\` ${downvoteEmoji} | \`${meme.total}\` ${upvoteEmoji} - ${downvoteEmoji}`)
         })
       })
     }
