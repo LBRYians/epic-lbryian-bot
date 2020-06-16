@@ -14,8 +14,8 @@ function getStats(client, championshipMeta, cb) {
       total = ups - downs;
 
       memes.push({
-        ups: ups,
-        downs: downs,
+        ups: ups - 1,
+        downs: downs - 1,
         total: total,
         caption: post.content.split('\n')[0],
         link: post.content.split('\n')[1]
