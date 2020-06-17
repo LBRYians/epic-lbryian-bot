@@ -7,6 +7,12 @@ Nodejs v12 and yarn are required.
 yarn install
 ```
 
+Create a file named `.env` in the repository's root folder, locally, where the bot is deployed or tested with the following contents:
+```
+token=[discord-token]
+```
+Replace `[discord-token]` with your bot's discord token.
+
 ###  Meme Championships
 This bot can host meme championships with upvote/downvote system.
 Each championship has its own metadata. This can be generated using the `src/championship/setUpChampionshipStructure.js` script.
