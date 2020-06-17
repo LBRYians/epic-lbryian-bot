@@ -33,6 +33,9 @@ const meta = {
 ```
 
 4. Give the script the basic meta and it will create everything and put the final meta in `./generatedMeta.json`.
+```js
+setUp(meta);
+```
 5. Use the meta and set up the championship: See the structure of `src/example-championship`. This generated meta file will be the source for the meta.
 5. Import the setup script inside `src/index.js` and run the function (example code for the same has been put inside index.js and commented).
 
@@ -42,3 +45,4 @@ NOTE:
 - The emojis HAVE to be unicode fonts, you have to copy paste the emoji like 👍 and not `:thumbsup:`.
 - `championshipName` is what appears in every command, `!participate [championshipName]` and so on. The name can have spaces, if it does, the commands will also have spaces.
 - The discord token has to exist in `.env` as `token` variable.
+- The setup script needs the token to edit the discord server side, to run the actual championship put the code in `src/` and import in `index.js` as mentioned above. Push and deploy, championship will be live.
