@@ -9,5 +9,10 @@ const client = new discord.Client();
 setPhase1(client);
 //setChampionship(client);
 
-client.on('ready', () => console.log(`logged in as ${client.user.tag}`))
-client.login(process.env.token);
+const tryLogin = () => {
+	console.log('login failed. Trying again.');
+
+	setTimeout(() => client.login(process.env.token).catch(tryLogin), 1000)
+}
+
+client.login(process.env.token).catch(tryLogin);

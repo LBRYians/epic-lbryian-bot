@@ -3,13 +3,15 @@ const client = new discord.Client();
 const fs = require('fs');
 require('dotenv').config();
 
-const updateMetaFile = meta => {
-  fs.writeFileSync('generatedMeta.json', JSON.stringify(meta));
+const updateMetaFile = (meta, currentList) => {
+  currentList[meta.championshipName] = meta;
+  fs.writeFileSync(process.env.championships_list_loc, JSON.stringify(currentList));
 }
 
 function setUpChampionshipStructure(championshipMeta) {
+  const currentList = JSON.parse(fs.readFileSync(process.env.championships_list_loc));
   const { championshipGuild, championshipName } = championshipMeta;
-  console.log('Final metadata will be saved in ./generatedMeta.json');
+  console.log(`Final metadata will be saved in ${process.env.championships_list_loc}`);
 
   client.on('ready', () => {
     const guild = client.guilds.cache.get(championshipGuild);
@@ -25,7 +27,7 @@ function setUpChampionshipStructure(championshipMeta) {
           console.log('Colosseum created, setting category');
           colosseum.setParent(championshipCategory);
           championshipMeta.colosseumChannel = colosseum.id;
-          updateMetaFile(championshipMeta);
+          updateMetaFile(championshipMeta, currentList);
         })
       }
 
@@ -43,7 +45,7 @@ function setUpChampionshipStructure(championshipMeta) {
           announcementsChannel.send(`PARTICIPANT LIST: THIS MESSAGE WILL BE AUTOMATICALLY UPDATED.`).then(msg => {
             console.log('Sent participant list.');
             championshipMeta.listMsgId = msg.id;
-            updateMetaFile(championshipMeta);
+            updateMetaFile(championshipMeta, currentList);
           })
         })
       }
@@ -53,7 +55,7 @@ function setUpChampionshipStructure(championshipMeta) {
         announcementsChannel.send(`PARTICIPANT LIST: THIS MESSAGE WILL BE AUTOMATICALLY UPDATED.`).then(msg => {
           console.log('Sent participant list.');
           championshipMeta.listMsgId = msg.id;
-          updateMetaFile(championshipMeta);
+          updateMetaFile(championshipMeta, currentList);
         })
       }
 
@@ -69,7 +71,7 @@ function setUpChampionshipStructure(championshipMeta) {
         .then(role => {
           console.log('Participant role created.');
           championshipMeta.participantRole = role.id;
-          updateMetaFile(championshipMeta);
+          updateMetaFile(championshipMeta, currentList);
         })
       }
 
@@ -84,7 +86,7 @@ function setUpChampionshipStructure(championshipMeta) {
         .then(role => {
           console.log('Voter role created.');
           championshipMeta.participantRole = role.id;
-          updateMetaFile(championshipMeta);
+          updateMetaFile(championshipMeta, currentList);
         })
       }
     })
@@ -101,10 +103,10 @@ function setUpChampionshipStructure(championshipMeta) {
 
     if (!championshipMeta.totalFinalists) {
       console.log('Total finalists not specified, defaulting to 3');
-      championshipMeta.totalFinalists = 10;
+      championshipMeta.totalFinalists = 3;
     }
 
-    updateMetaFile(championshipMeta);
+    updateMetaFile(championshipMeta, currentList);
   })
 
   client.login(process.env.token);
