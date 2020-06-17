@@ -41,3 +41,4 @@ NOTE:
 - The generated meta can be changed after generating too. The generation doesn't affect the final championship.
 - The emojis HAVE to be unicode fonts, you have to copy paste the emoji like 👍 and not `:thumbsup:`.
 - `championshipName` is what appears in every command, `!participate [championshipName]` and so on. The name can have spaces, if it does, the commands will also have spaces.
+- The discord token has to exist in `.env` as `token` variable.

@@ -1,6 +1,6 @@
 {
   "championshipName": "example",
-  "championshipGuild": "564322123737464850",
+  "championshipGuild": "[server-id]",
   "colosseumChannel": "[id]",
   "listMsgId": "[generated-id]",
   "announcementsChannel": "[id]",
