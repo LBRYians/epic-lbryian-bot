@@ -36,4 +36,7 @@ const meta = {
 5. Use the meta and set up the championship: See the structure of `src/example-championship`. This generated meta file will be the source for the meta.
 5. Import the setup script inside `src/index.js` and run the function (example code for the same has been put inside index.js and commented).
 
-NOTE: Created channels and roles have default perms and generated names, you can edit anything as long as the bot has permissions to use the channels and roles.
+NOTE: 
+- Created channels and roles have default perms and generated names, you can edit anything as long as the bot has permissions to use the channels and roles.
+- The generated meta can be changed after generating too. The generation doesn't affect the final championship.
+- The emojis HAVE to be unicode fonts, you have to copy paste the emoji like 👍 and not `:thumbsup:`.
