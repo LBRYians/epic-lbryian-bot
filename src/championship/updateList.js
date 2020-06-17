@@ -1,7 +1,7 @@
 function updateList(client, championshipMeta, cb = () => {}) {
-  const { championshipGuild, listChannel, championshipName, participantRole, listMsgId } = championshipMeta;
+  const { championshipGuild, announcementsChannel, championshipName, participantRole, listMsgId } = championshipMeta;
 
-  client.guilds.cache.get(championshipGuild).channels.cache.get(listChannel).messages.fetch().then(msgs => {
+  client.guilds.cache.get(championshipGuild).channels.cache.get(announcementsChannel).messages.fetch().then(msgs => {
     const participants = client.guilds.cache.get(championshipGuild).roles.cache.get(participantRole).members.array();
     let list = `
 **${championshipName.toUpperCase()} PARTICIPANTS (${participants.length}):**`;
