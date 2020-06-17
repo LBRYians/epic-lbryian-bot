@@ -9,8 +9,7 @@
   "private": false,
   "scripts": {
     "start": "node .",
-    "dev": "nodemon .",
-    "updateList": "node src/lbryeme-championship/updateList.js"
+    "dev": "nodemon ."
   },
   "dependencies": {
     "discord.js": "^12.2.0",
