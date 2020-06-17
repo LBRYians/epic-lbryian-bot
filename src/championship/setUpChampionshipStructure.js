@@ -7,7 +7,7 @@ const updateMetaFile = meta => {
   fs.writeFileSync('generatedMeta.json', JSON.stringify(meta));
 }
 
-function setUpChampionShipStructure(championshipMeta) {
+function setUpChampionshipStructure(championshipMeta) {
   const { championshipGuild, championshipName } = championshipMeta;
   console.log('Final metadata will be saved in ./generatedMeta.json');
 
@@ -110,4 +110,4 @@ function setUpChampionShipStructure(championshipMeta) {
   client.login(process.env.token);
 }
 
-module.exports = setUpChampionShipStructure;
+module.exports = setUpChampionshipStructure;

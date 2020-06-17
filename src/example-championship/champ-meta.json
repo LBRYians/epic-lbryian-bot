@@ -1,0 +1,12 @@
+{
+  "championshipName": "example",
+  "championshipGuild": "564322123737464850",
+  "colosseumChannel": "[id]",
+  "listMsgId": "[generated-id]",
+  "announcementsChannel": "[id]",
+  "participantRole": "[role-id]",
+  "voterRole": "[role-id]",
+  "totalFinalists": 10,
+  "upvoteEmoji": "😍",
+  "downvoteEmoji": "🤮"
+}
