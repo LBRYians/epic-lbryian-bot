@@ -40,3 +40,4 @@ NOTE:
 - Created channels and roles have default perms and generated names, you can edit anything as long as the bot has permissions to use the channels and roles.
 - The generated meta can be changed after generating too. The generation doesn't affect the final championship.
 - The emojis HAVE to be unicode fonts, you have to copy paste the emoji like 👍 and not `:thumbsup:`.
+- `championshipName` is what appears in every command, `!participate [championshipName]` and so on. The name can have spaces, if it does, the commands will also have spaces.
