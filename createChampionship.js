@@ -8,4 +8,7 @@ const totalFinalists = Math.round(Number(question('Enter the number of finalists
 const upvoteEmoji = question('Enter the upvote emoji (emoji itself like 👍 not :thumbsup:) (Enter for default 👍): ');
 const downvoteEmoji = question('Enter the upvote emoji (emoji itself like 👎 not :thumbsdown:) (Enter for default 👎): ');
 
-setUpChampionshipStructure({ championshipGuild, championshipName, upvoteEmoji, downvoteEmoji, totalFinalists });
+let allowParticipationCommands = question('Enable/Disable !participate and !quit (Answer true or false, default false): ');
+allowParticipationCommands = allowParticipationCommands.trim().toLowerCase() == 'true';
+
+setUpChampionshipStructure({ championshipGuild, championshipName, upvoteEmoji, downvoteEmoji, totalFinalists, allowParticipationCommands });
