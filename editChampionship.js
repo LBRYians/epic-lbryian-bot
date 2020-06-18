@@ -20,10 +20,12 @@ if (Object.keys(currentList).includes(editChampionship)) {
   const totalFinalists = question(`What should be the new total finalists (Current: ${championship.totalFinalists}, Enter for default): `);
   const upvoteEmoji = question(`What should be the new upvote emoji? (Current: ${championship.upvoteEmoji}, Enter for default): `);
   const downvoteEmoji = question(`What should be the new downvote emoji? (Current: ${championship.downvoteEmoji}, Enter for default): `);
-
+  const allowParticipationCommands = question(`Show !participate and !quit be allowed? (Answer true or false) (Current ${championship.allowParticipationCommands}, Enter for default): `)
+  
   if (totalFinalists.trim()) championship.totalFinalists = totalFinalists;
   if (upvoteEmoji.trim()) championship.upvoteEmoji = upvoteEmoji;
   if (downvoteEmoji.trim()) championship.downvoteEmoji = downvoteEmoji;
+  if (allowParticipationCommands) championship.allowParticipationCommands = allowParticipationCommands.trim().toLowerCase() == 'true';
   
   fs.writeFileSync(process.env.championships_list_loc, JSON.stringify(currentList));
 }
