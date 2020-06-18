@@ -10,8 +10,8 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
-    "create": "node createChampionship.js",
-    "remove": "node removeChampionship.js"
+    "createChampionship": "node createChampionship.js",
+    "removeChampionship": "node removeChampionship.js"
   },
   "dependencies": {
     "discord.js": "^12.2.0",
