@@ -36,4 +36,11 @@ yarn createChampionship
 yarn removeChampionship
 ```
 
+#### Editin an Existing Championship
+You can change the total finalists, change emojis, or remove participation commands of an existing championship.
+1. Use the included package.json script `editChampionship` which will walk you through the process. Type the following command in a terminal in the cloned repository.
+```bash
+yarn editChampionship
+```
+
 2. Restart the bot. This step changes from deployment to deployment.
