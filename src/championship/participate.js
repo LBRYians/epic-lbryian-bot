@@ -14,7 +14,10 @@ function setParticipation(client, championshipMeta) {
             msg.channel.send(`<@${msg.author.id}> You've been added!`);
           })
         })
-        .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
+        .catch(err => {
+          msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.')
+          console.log('Error in adding role', err)
+        })
       }
     }
     else if (msg.content.trim().toLowerCase() == `${prefix}quit ${championshipName}`) {
@@ -26,7 +29,10 @@ function setParticipation(client, championshipMeta) {
             msg.channel.send(`<@${msg.author.id}> You've been removed from the list :(`)
           })
         })
-        .catch(() => msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.'))
+        .catch(() => {
+          msg.channel.send('Whoops! Something went wrong. Please try again. If this problem persists, please mention a dev.')
+          console.log('Errir in removing role', err)
+        })
       }
       else {
         msg.channel.send(`<@${msg.author.id}> You are not a participant. ¯\\_(ツ)_/¯`);

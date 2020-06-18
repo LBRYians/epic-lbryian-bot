@@ -11,7 +11,7 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}`);
 	
 	for (let championship in championshipsList) {
-		console.log(`Setting up ${championship}`, championshipsList[championship]);
+		console.log(`Setting up ${championship}`);
 		
 		setVotes(client, championshipsList[championship]);
 		if (championshipsList[championship].allowParticipationCommands) setParticipation(client, championshipsList[championship]);
