@@ -9,6 +9,7 @@
     "voterRole": "721766560229883934",
     "totalFinalists": 10,
     "upvoteEmoji": "😍",
-    "downvoteEmoji": "🤮"
+    "downvoteEmoji": "🤮",
+    "allowParticipationCommands": false
   }
 }
