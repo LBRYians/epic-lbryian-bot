@@ -106,6 +106,11 @@ function setUpChampionshipStructure(championshipMeta) {
       championshipMeta.totalFinalists = 3;
     }
 
+    if (championshipMeta.allowParticipationCommands == undefined) {
+      console.log('Participation commands not specidied, defaulting to true.');
+      championshipMeta.allowParticipationCommands = true;
+    }
+
     updateMetaFile(championshipMeta, currentList);
   })
 
