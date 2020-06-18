@@ -9,7 +9,9 @@
   "private": false,
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "create": "node createChampionship.js",
+    "remove": "node removeChampionship.js"
   },
   "dependencies": {
     "discord.js": "^12.2.0",
