@@ -11,6 +11,12 @@ const updateMetaFile = (meta, currentList) => {
 function setUpChampionshipStructure(championshipMeta) {
   const currentList = JSON.parse(fs.readFileSync(process.env.championships_list_loc));
   const { championshipGuild, championshipName } = championshipMeta;
+
+  if (Object.keys(currentList).includes(championshipName)) {
+    console.log(`Championship ${championshipName} already exists.`);
+    process.exit();
+  }
+
   console.log(`Final metadata will be saved in ${process.env.championships_list_loc}`);
 
   client.on('ready', () => {
