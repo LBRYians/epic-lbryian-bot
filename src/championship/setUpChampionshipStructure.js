@@ -102,11 +102,6 @@ function setUpChampionshipStructure(championshipMeta) {
       championshipMeta.upvoteEmoji = '👍';
     }
 
-    if (!championshipMeta.downvoteEmoji) {
-      console.log('No downvote emoji specified, defaulting to 👎');
-      championshipMeta.downvoteEmoji = '👎';
-    }
-
     if (!championshipMeta.totalFinalists) {
       console.log('Total finalists not specified, defaulting to 3');
       championshipMeta.totalFinalists = 3;

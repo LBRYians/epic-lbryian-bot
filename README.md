@@ -19,7 +19,7 @@ This bot needs a local *JSON* file to store the list of championships. If you ha
 If you have not created one, create it with the `.json` extension and `{}` as the content initially.
 
 ###  Meme Championships
-This bot can host meme championships with upvote/downvote system.
+This bot can host meme championships with upvote system.
 Each championship has its own metadata. This can be generated using the `src/championship/setUpChampionshipStructure.js` script.
 
 #### Creating One

@@ -3,7 +3,7 @@ const getStats = require('./getChampionshipStats');
 const getVoterList = require('./getVoterList');
 
 function setVotes(client, championshipMeta) {
-  const { colosseumChannel, upvoteEmoji, downvoteEmoji, championshipName } = championshipMeta;
+  const { colosseumChannel, upvoteEmoji, championshipName } = championshipMeta;
 
   client.on('message', msg => {
     if (msg.content.trim().toLowerCase() == `${prefix}champ ${championshipName}`) {
@@ -15,14 +15,13 @@ function setVotes(client, championshipMeta) {
 **#${meme.rank}** Meme in **${championshipName.toUpperCase()}**    
 **Caption**: ${meme.caption}
 **Link**: ${meme.link}
-\`${meme.ups}\` ${upvoteEmoji} | \`${meme.downs}\` ${downvoteEmoji} | \`${meme.total}\` ${upvoteEmoji} - ${downvoteEmoji}`)
+\`${meme.ups}\` ${upvoteEmoji}`)
         })
       })
     }
     else if (msg.channel.id === colosseumChannel) {
       // Set votes on a new post
       msg.react(upvoteEmoji);
-      msg.react(downvoteEmoji);
     }
     else if (msg.content.trim().toLowerCase() == `${prefix}voterlist ${championshipName}`) {
       getVoterList(client, championshipMeta, voterIds => {

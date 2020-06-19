@@ -1,13 +1,12 @@
 const discord = require('discord.js');
 require('dotenv').config();
 
-function voteOnce(championshipGuild, colosseumChannel, upvoteEmoji, downvoteEmoji) {
+function voteOnce(championshipGuild, colosseumChannel, upvoteEmoji) {
   const client = new discord.Client();
 
   const vote = (colosseum, messages) => {
     messages.each(msg => {
       msg.react(upvoteEmoji);
-      msg.react(downvoteEmoji);
     })
 
     // if more messages might be available, fetch those too (limit of 100)

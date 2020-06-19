@@ -1,22 +1,17 @@
 function getStats(client, championshipMeta, cb) {
-  const { championshipGuild, colosseumChannel, upvoteEmoji, downvoteEmoji, totalFinalists } = championshipMeta;
+  const { championshipGuild, colosseumChannel, upvoteEmoji, totalFinalists } = championshipMeta;
   let memes = [];
 
   const generateStats = (colosseum, posts, cb) => {
     posts.each(post => {
-      let ups = 0, downs = 0, total = 0;
+      let ups = 0, total = 0;
 
       post.reactions.cache.array().forEach(reaction => {
         if (reaction.emoji.name == upvoteEmoji) ups += reaction.count;
-        if (reaction.emoji.name == downvoteEmoji) downs += reaction.count;
       })
-
-      total = ups - downs;
 
       memes.push({
         ups: ups - 1,
-        downs: downs - 1,
-        total: total,
         caption: post.content.split('\n')[0],
         link: post.content.split('\n')[1]
       })
