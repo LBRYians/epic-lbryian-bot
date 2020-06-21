@@ -31,7 +31,7 @@ function getStats(client, championshipMeta, cb) {
       ]
 
       memes.slice(1).forEach((meme, i) => {
-        if (rank < totalFinalists) {
+        if (rank <= totalFinalists) {
           if (finalMemes[i].ups > meme.ups) {
             rank += skippedRanks;
             skippedRanks = 0;
