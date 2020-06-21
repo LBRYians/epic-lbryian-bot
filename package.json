@@ -1,6 +1,6 @@
 {
   "name": "epic-lbryian-bot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "EPIC BOT",
   "main": "src/index.js",
   "repository": "https://github.com/lbryians/epic-lbryian-bot.git",
