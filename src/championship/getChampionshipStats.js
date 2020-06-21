@@ -22,6 +22,7 @@ function getStats(client, championshipMeta, cb) {
       memes = memes.sort((a, b) => b.ups - a.ups);
 
       let rank = 1;
+      let skippedRanks = 0;
       let finalMemes = [
         {
           ...memes[0],
@@ -30,8 +31,10 @@ function getStats(client, championshipMeta, cb) {
       ]
 
       memes.slice(1).forEach((meme, i) => {
-        if (rank <= totalFinalists) {
+        if (rank < totalFinalists) {
           if (finalMemes[i].ups > meme.ups) {
+            rank += skippedRanks;
+            skippedRanks = 0;
             finalMemes.push({
               ...meme,
               rank: ++rank
@@ -42,6 +45,7 @@ function getStats(client, championshipMeta, cb) {
               ...meme,
               rank
             })
+            skippedRanks++;
           }
         }
       })
