@@ -4,7 +4,7 @@ function getStats(client, championshipMeta, cb) {
 
   const generateStats = (colosseum, posts, cb) => {
     posts.each(post => {
-      let ups = 0, total = 0;
+      let ups = 0;
 
       post.reactions.cache.array().forEach(reaction => {
         if (reaction.emoji.name == upvoteEmoji) ups += reaction.count;
@@ -19,25 +19,33 @@ function getStats(client, championshipMeta, cb) {
 
     if (posts.size == 100) colosseum.messages.fetch({ limit: 100, before: posts.array().slice(-1)[0].id }).then(posts => generateStats(colosseum, posts, cb));
     else {
-      memes = memes.sort((a, b) => {
-        if (a.total == b.total) return b.ups - a.ups;
-        else return b.total - a.total;
-      })
+      memes = memes.sort((a, b) => b.ups - a.ups);
 
       let rank = 1;
-      let finalMemes = [];
+      let finalMemes = [
+        {
+          ...memes[0],
+          rank
+        }
+      ]
 
-      memes.forEach((meme, i) => {
-        finalMemes.push({
-          ...meme,
-          rank: rank
-        })
-
-        if ((i+1 < memes.length) && (meme.total == memes[i+1].total && meme.ups == memes[i+1].ups)) return;
-        else return rank++;
+      memes.slice(1).forEach((meme, i) => {
+        if (rank <= totalFinalists) {
+          if (finalMemes[i].ups > meme.ups) {
+            finalMemes.push({
+              ...meme,
+              rank: ++rank
+            })
+          }
+          else {
+            finalMemes.push({
+              ...meme,
+              rank
+            })
+          }
+        }
       })
-
-      finalMemes = finalMemes.filter(meme => meme.rank <= totalFinalists);
+      
       if (cb) cb(finalMemes);
     }
   }
