@@ -91,7 +91,7 @@ function setUpChampionshipStructure(championshipMeta) {
         })
         .then(role => {
           console.log('Voter role created.');
-          championshipMeta.participantRole = role.id;
+          championshipMeta.voterRole = role.id;
           updateMetaFile(championshipMeta, currentList);
         })
       }
